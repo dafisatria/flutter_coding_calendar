@@ -22,7 +22,7 @@ class Navigation extends State<MyNavigation> {
           backgroundColor: Colors.blue,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
+          icon: Icon(Icons.person),
           label: 'user',
           backgroundColor: Colors.blue,
         ),

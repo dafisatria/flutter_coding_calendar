@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_coding_calendar/Screens/bottom_navigation.dart';
+import 'package:flutter_coding_calendar/Screens/home_screen.dart';
 import 'package:flutter_coding_calendar/Screens/login_screen.dart';
 import 'package:flutter_coding_calendar/Screens/user_edit_screen.dart';
 import 'package:flutter_coding_calendar/Screens/user_help_center_screen.dart';
@@ -23,7 +25,11 @@ class UserScreen extends StatelessWidget {
             Icons.arrow_back,
             color: Color(0xFF757575),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const TasksPage();
+            }));
+          },
         ),
       ),
       body: Column(
@@ -108,33 +114,6 @@ class UserScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0xFFF5F6F9),
-              onPressed: () {},
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.notifications,
-                    color: kPrimaryColor,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(
-                    child: Text(
-                      'Notifications',
-                    ),
-                  ),
-                  Icon(Icons.arrow_forward_ios)
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: FlatButton(
-              padding: EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color: Color(0xFFF5F6F9),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const HelpCenterScreen();
@@ -168,7 +147,9 @@ class UserScreen extends StatelessWidget {
               color: Color(0xFFF5F6F9),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
+                  return LoginScreen(
+                      // Goback: (int) {},
+                      );
                 }));
               },
               child: Row(
@@ -192,6 +173,7 @@ class UserScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: MyNavigation(),
     );
   }
 }

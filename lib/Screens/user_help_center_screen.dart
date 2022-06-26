@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_coding_calendar/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpCenterScreen extends StatelessWidget {
   const HelpCenterScreen({Key? key}) : super(key: key);
@@ -71,7 +72,7 @@ class HelpCenterScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 color: Color(0xFFF5F6F9),
-                onPressed: () {},
+                onPressed: _launchURL,
                 child: Row(
                   children: [
                     Icon(
@@ -101,7 +102,7 @@ class HelpCenterScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 color: Color(0xFFF5F6F9),
-                onPressed: () {},
+                onPressed: _launchURL2,
                 child: Row(
                   children: [
                     Icon(
@@ -128,5 +129,23 @@ class HelpCenterScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+_launchURL() async {
+  const url = 'https://wa.me/6282264379368';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchURL2() async {
+  const url = 'mailto:2031710070@student.polinema.ac.id';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

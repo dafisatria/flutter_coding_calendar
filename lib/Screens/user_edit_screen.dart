@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditUserScreen extends StatefulWidget {
   const EditUserScreen({Key? key}) : super(key: key);
@@ -10,6 +11,15 @@ class EditUserScreen extends StatefulWidget {
 }
 
 class _EditUserScreenState extends State<EditUserScreen> {
+  bool _secureText = true;
+  var password;
+
+  showHide() {
+    setState(() {
+      _secureText = !_secureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,9 +101,92 @@ class _EditUserScreenState extends State<EditUserScreen> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "mas brigas", false),
-              buildTextField("E-mail", "masbrigas@gmail.com", false),
-              buildTextField("Password", "********", true),
+              TextFormField(
+                // controller: _Titlecontroller,
+                cursorColor: Colors.black,
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
+                decoration: InputDecoration(
+                  labelText: "Name",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  fillColor: Colors.black,
+                  labelStyle: GoogleFonts.montserrat(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              TextFormField(
+                // controller: _Titlecontroller,
+                cursorColor: Color.fromARGB(255, 0, 0, 0),
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  fillColor: Colors.black,
+                  labelStyle: GoogleFonts.montserrat(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              TextFormField(
+                  cursorColor: Colors.black,
+                  style: GoogleFonts.montserrat(
+                    color: Colors.black,
+                    fontSize: 15,
+                  ),
+                  keyboardType: TextInputType.text,
+                  obscureText: _secureText,
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                    fillColor: Colors.black,
+                    labelStyle: GoogleFonts.montserrat(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ),
+                    labelText: 'Password',
+                    hintText: 'Enter secure password',
+                    suffixIcon: IconButton(
+                      onPressed: showHide,
+                      icon: Icon(_secureText
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                    ),
+                  ),
+                  validator: (passwordValue) {
+                    if (passwordValue!.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    password = passwordValue;
+                    return null;
+                  }),
               SizedBox(
                 height: 35,
               ),
@@ -101,7 +194,9 @@ class _EditUserScreenState extends State<EditUserScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: OutlinedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       shape: RoundedRectangleBorder(
@@ -116,7 +211,9 @@ class _EditUserScreenState extends State<EditUserScreen> {
                     ),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     color: Color(0xFFF5F6F9),
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,
